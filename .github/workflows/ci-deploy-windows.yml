@@ -13,7 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build Docker image
+      - name: Publish .NET app
+        run: dotnet publish ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj \
+              -c Release -o ./publish/CICD
+
+      - name: Build Docker image from published output
         shell: powershell
         run: |
           docker build -t my-app:latest .
