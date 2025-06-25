@@ -25,8 +25,8 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker stop my-app
-          docker rm   my-app
+          docker stop my-app-test
+          docker rm   my-app-test
           
 
       - name: Run new container
