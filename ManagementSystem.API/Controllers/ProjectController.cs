@@ -17,7 +17,7 @@ namespace ManagementSystem.API.Controllers
         [HttpGet("GetList")]
         public SingleResponeMessage<string> GetList() { 
             var res = new SingleResponeMessage<string>();
-            res.Item = "Hello World";
+            res.Item = "Hello Haiduong";
             res.IsSuccess = false;
             return res;
         }

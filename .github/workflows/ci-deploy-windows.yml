@@ -28,8 +28,10 @@ jobs:
           docker container inspect my-app >nul 2>nul && (
             docker stop my-app
             docker rm   my-app
+          ) || (
+            echo Container my-app not found; skipping cleanup.
             exit /b 0
-          ) || exit /b 0
+          )
 
       - name: Run new container
         shell: cmd
