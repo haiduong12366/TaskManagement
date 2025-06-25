@@ -3,7 +3,7 @@ name: Build & Deploy on LAN Windows Server
 # Trigger on pushes to your main branch (or change to your branch)
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
