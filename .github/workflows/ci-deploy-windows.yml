@@ -14,8 +14,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Publish .NET app
-        run: dotnet publish ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj \
-              -c Release -o ./publish/CICD
+        run: dotnet publish D:/CodeToCheck/CICD/TaskManagement/ManagementSystem.WSAPI/ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj -c Release -o ./publish/CICD
 
       - name: Build Docker image from published output
         shell: powershell
