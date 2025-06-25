@@ -15,12 +15,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        shell: pwsh
+        shell: powershell
         run: |
           docker build -t my-app:latest .
 
       - name: Stop & remove old container
-        shell: pwsh
+        shell: powershell
         run: |
           docker stop my-app -ErrorAction SilentlyContinue
           docker rm   my-app -ErrorAction SilentlyContinue
