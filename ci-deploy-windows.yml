@@ -1,0 +1,30 @@
+name: Build & Deploy on LAN Windows Server
+
+# Trigger on pushes to your main branch (or change to your branch)
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    # This tells Actions to use any self-hosted Windows runner
+    runs-on: [ self-hosted, windows ]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        shell: pwsh
+        run: |
+          docker build -t my-app:latest .
+
+      - name: Stop & remove old container
+        shell: pwsh
+        run: |
+          docker stop my-app -ErrorAction SilentlyContinue
+          docker rm   my-app -ErrorAction SilentlyContinue
+
+      - name: Run new container
+        shell: pwsh
+        run: docker run -d --name my-app -p 9000:9000 my-app:latest
