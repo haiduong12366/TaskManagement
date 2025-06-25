@@ -15,8 +15,7 @@ jobs:
 
       - name: Publish .NET app
         shell: powershell
-        run: dotnet publish D:/CodeToCheck/CICD/TaskManagement/ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj \
-              -c Release -o ./publish/CICD
+        run: dotnet publish D:/CodeToCheck/CICD/TaskManagement/ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj -c Release -o ./publish/CICD
 
       - name: Build Docker image from published output
         shell: powershell
