@@ -25,10 +25,14 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker container inspect my-app >nul 2>nul && (
+          docker container inspect my-app >nul 2>nul
+          REM If it exists (errorlevel 0), stop & remove; otherwise just echo and continue
+          if %ERRORLEVEL%==0 (
             docker stop my-app
             docker rm   my-app
-          ) || echo Container my-app not found; skipping cleanup.
+          ) else (
+            echo Container my-app not found; skipping cleanup.
+          )
 
       - name: Run new container
         shell: cmd
