@@ -15,7 +15,7 @@ jobs:
 
       - name: Publish .NET app
         shell: cmd
-        run: dotnet publish D:/CodeToCheck/CICD/TaskManagement/ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj -c Release -o ./publish/CICD
+        run: dotnet publish ManagementSystem.WSAPI/ManagementSystem.WSAPI.csproj -c Release -o ./publish/CICD
 
       - name: Build Docker image from published output
         shell: cmd
@@ -25,8 +25,8 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker stop my-app -ErrorAction SilentlyContinue
-          docker rm   my-app -ErrorAction SilentlyContinue
+          docker stop my-app
+          docker rm my-app
 
       - name: Run new container
         shell: cmd
