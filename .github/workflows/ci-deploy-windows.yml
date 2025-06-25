@@ -25,8 +25,11 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker stop my-app
-          docker rm my-app
+          docker ps -a --filter "name=my-app" --format "{{.Names}}" | findstr /R "^my-app$" >nul
+          IF %ERRORLEVEL% EQU 0 (
+            docker stop my-app
+            docker rm   my-app
+          )
 
       - name: Run new container
         shell: cmd
