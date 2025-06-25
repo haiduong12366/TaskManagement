@@ -25,8 +25,11 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker stop my-app >nul 2>nul || REM
-          docker rm   my-app >nul 2>nul || REM
+          docker container inspect my-app >nul 2>nul && (
+            docker stop my-app
+            docker rm   my-app
+            exit /b 0
+          ) || exit /b 0
 
       - name: Run new container
         shell: cmd
