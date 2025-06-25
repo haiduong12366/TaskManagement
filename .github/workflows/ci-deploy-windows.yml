@@ -25,9 +25,10 @@ jobs:
       - name: Stop & remove old container
         shell: cmd
         run: |
-          docker stop my-app-test
-          docker rm   my-app-test
-          
+          docker container inspect my-app >nul 2>nul && (
+            docker stop my-app
+            docker rm   my-app
+          ) || echo Container my-app not found; skipping cleanup.
 
       - name: Run new container
         shell: cmd
